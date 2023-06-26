@@ -1,0 +1,36 @@
+{
+    "niv": {
+        "p1": {
+            "ex1": {
+                "locked": false,
+                "done": true
+            },
+            "ex2": {
+                "locked": false,
+                "done": false
+            },
+            "ex3": {
+                "locked": false,
+                "done": false
+            }
+        },
+        "p2": {
+            "ex1": {
+                "locked": false,
+                "done": false
+            },
+            "ex2": {
+                "locked": true,
+                "done": false
+            },
+            "ex3": {
+                "locked": true,
+                "done": false
+            }
+        }
+    },
+    "man": {
+        "1": false,
+        "2": false
+    }
+}

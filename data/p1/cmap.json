@@ -1,0 +1,24 @@
+{
+    "ex1":{
+        "description" : "calculs",
+        "x":300,
+        "y":300,
+        "r":20,
+        "link": ["ex2", "ex3"]
+    },
+
+    "ex2":{
+        "description" : "affectations",
+        "x":400,
+        "y":200,
+        "r":20,
+        "link": []
+    },
+    "ex3":{
+        "description" : "échanger deux variables",
+        "x":400,
+        "y":400,
+        "r":20,
+        "link": []
+    }
+}

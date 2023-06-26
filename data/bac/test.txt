@@ -1,0 +1,9 @@
+palin(s:str)->bool
+"" ; True
+"a" ; True
+"ab" ; False
+"coucou" ; False
+"abba" ; True
+"kayak" ; True
+"())("; True
+"()()"; False
