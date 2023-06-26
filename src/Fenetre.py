@@ -270,7 +270,7 @@ class Bac(Ideux):
         super().show()
         def menu():
             self.to_men(None)
-        #self.frame.bind('<Escape>',  Context.confirmation("Sur ?", self.root, lambda: self.to_men(None))) 
+        self.frame.bind('<Escape>',  self.to_men) 
 
     def get_test_cases(self):
         """ Acquiert les tests unitaire à partir du panneau latéral. """
