@@ -8,7 +8,7 @@ Un jeu moche pour apprendre le python.
 
 ## Version
 
-Actuellement en alpha. Plus d'info dans [ROADMAP](ROADMAPmd)
+Actuellement en alpha. Plus d'info dans [ROADMAP](ROADMAP.md)
 
 
 ## Lancement
