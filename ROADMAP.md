@@ -9,8 +9,9 @@
 ## Ergonomie
 - [x] save on exec 
 - [x] save on test
-- [ ] affichages de messages
+- [ ] affichage de messages
 - [x] bind echap correctement 
+- [x] confirmation sortie
 - [ ] avertissement en cas de non sauvegarde
 
 

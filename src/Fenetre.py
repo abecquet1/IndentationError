@@ -2,7 +2,7 @@
 from tkinter import *
 from tkinter import ttk
 from io import StringIO
-
+from tkinter.messagebox import *
 
 # Modules projet 
 from TextFrame import *
@@ -145,7 +145,7 @@ class Menu(Fenetre):
         b_opt.bind('<Leave>', lambda e: b_opt.config(style = 'clickable.TLabel'))
         b_opt.bind('<Enter>', lambda e: b_opt.config(style = 'hovered.TLabel'))
 
-        self.frame.bind('<Escape>',lambda e: self.root.destroy(), add= "+") 
+        self.frame.bind('<Escape>', lambda e: Context.confirmation("Êtes-vous sûr de vouloir quitter ?", self.root, self.root.destroy) , add= "+") 
             
     
 
@@ -163,6 +163,8 @@ class Menu(Fenetre):
         """ Affiche la carte du monde."""
         self.hide(event)
         self.root.show_wmap(event)
+
+        
 
 
 
@@ -196,12 +198,14 @@ class Ideux(Fenetre_Nav):
 
         self.c_save = c_save
         self.l_save = l_save
+        self.saved = True 
 
 
 
     def show(self):
         """ Affiche la fenêtre ideuse"""
         super().show()
+        self.saved = True 
         
         # Nav
         b_men = ttk.Label(self.nav, text="> Menu", style = 'clickable.TLabel')
@@ -264,8 +268,9 @@ class Bac(Ideux):
     def show(self):
         """ Affiche le niveau."""
         super().show()
-        self.frame.bind('<Escape>', self.to_men, add= "+")
-
+        def menu():
+            self.to_men(None)
+        #self.frame.bind('<Escape>',  Context.confirmation("Sur ?", self.root, lambda: self.to_men(None))) 
 
     def get_test_cases(self):
         """ Acquiert les tests unitaire à partir du panneau latéral. """

@@ -62,6 +62,9 @@ class LateralFrame(TextFrame):
         super().__init__(*args, **kwargs)
         self.scroll = None
 
+    def modif(self, event):
+        self.ideux.saved = False
+        
         
 
     def grid(self, *args, **kwargs):
@@ -101,7 +104,10 @@ class LateralFrame(TextFrame):
             s+= " --- Renseignez sur les lignes suivantes les résultats attendus pour différents arguments.\n\n"
             s+= " ex : '2;4' indique que la fonction carre, appelée avec l'argument 2, doit renvoyer 4"
             self.h_button.bind("<1>", lambda e: Context.contextFrame(s,self.root, 50 , 17, e))
+            self.text.bind("<Key>",  self.modif, add = "+")
             
+        self.text.bind("<Escape>",  lambda e: self.ideux.frame.focus_set() , add = "+")
+
             
   
 
@@ -140,6 +146,7 @@ class ConsoleFrame(TextFrame):
         self.text.bind("<Return>", lambda e: self.run(e), add="")
         self.text.bind("<Key>", lambda e: self.key_block(e))
         self.text.bind("<F1>", lambda e: self.clear(e))
+        self.text.bind("<Escape>",  lambda e: self.ideux.frame.focus_set() , add = "+")
         
 
     def clear(self, event):
@@ -227,13 +234,12 @@ class CodeFrame(TextFrame):
     def save(self, event):
         """ Sauvegarde le contenu de la fenêtre dans le fichier de savegarde de l'IDE."""
         self.ideux.console.text.insert(END, "Fichier sauvegardé.\n>>> ")
+        self.ideux.saved = True
         with open(self.ideux.c_save, 'w') as file:
             file.write(self.text.get(1.0, END))
         with open(self.ideux.l_save, 'w') as file:
             file.write(self.ideux.lateral.text.get(1.0, END))
 
-
-        
 
     def run(self, event):
         """ Exécute le code en affichant la sortie standard dans la console de l'IDE."""
@@ -352,8 +358,8 @@ class CodeFrame(TextFrame):
         
         
         self.text.grid(column = 1, row = 2, columnspan = 2, sticky = "NSEW", padx = (2,2), pady =(2, 1))
-
-    import tkinter as tk
+        self.text.bind("<Escape>",  lambda e: self.ideux.frame.focus_set() , add = "+")
+        
 
     def autoIndent(self):
         index = f"{self.text.index('insert')}-1l linestart"
@@ -368,6 +374,8 @@ class CodeFrame(TextFrame):
             
         self.text.insert("insert linestart", "\t"*tab_count)
 
+    def modif(self, event):
+        self.ideux.saved = False
 
     def bindings(self):
         """ Bindings."""
