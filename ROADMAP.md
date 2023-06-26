@@ -7,10 +7,10 @@
 
 
 ## Ergonomie
-- [ ] save on exec 
-- [ ] save on test
+- [x] save on exec 
+- [x] save on test
 - [ ] affichages de messages
-- [ ] bind echap correctement 
+- [x] bind echap correctement 
 - [ ] avertissement en cas de non sauvegarde
 
 
@@ -40,6 +40,7 @@
 
 ## Déploiement
 - [ ] gérer OS
+- [ ] gérer résolution par défaut
 - [ ] setup 
 
 

@@ -37,10 +37,14 @@ class Fenetre:
         self.frame = ttk.Frame(self.root, padding="3 3 3 3", style = "noir.TFrame")
         self.frame.grid(column=0, row=0, sticky="NSEW")
 
+        # Focus
+        self.frame.focus_set()
+
     def hide(self, event):
         """ Cache le fenêtre."""
         self.shown = False
         self.frame.destroy()
+        self.root.focus_set()
 
 
 
@@ -140,7 +144,8 @@ class Menu(Fenetre):
 
         b_opt.bind('<Leave>', lambda e: b_opt.config(style = 'clickable.TLabel'))
         b_opt.bind('<Enter>', lambda e: b_opt.config(style = 'hovered.TLabel'))
-            
+
+        self.frame.bind('<Escape>',lambda e: self.root.destroy(), add= "+") 
             
     
 
@@ -244,6 +249,8 @@ class Ideux(Fenetre_Nav):
         self.root.console = self.console
         self.code.lateral = self.lateral
 
+        
+
 
 
 
@@ -254,7 +261,12 @@ class Ideux(Fenetre_Nav):
 ### BAC ###
 class Bac(Ideux):
     """ Fenêtre du bac à sable."""
-       
+    def show(self):
+        """ Affiche le niveau."""
+        super().show()
+        self.frame.bind('<Escape>', self.to_men, add= "+")
+
+
     def get_test_cases(self):
         """ Acquiert les tests unitaire à partir du panneau latéral. """
         return self.lateral.text.get(1.0, END)
@@ -287,6 +299,7 @@ class Niveau(Ideux):
         b_map.bind('<Leave>', lambda e: b_map.config(style = 'clickable.TLabel'))
         b_map.bind('<Enter>', lambda e: b_map.config(style = 'hovered.TLabel'))
         b_map.bind('<1>', self.to_map)
+        self.frame.bind('<Escape>', self.to_map, add= "")
 
         b_map.grid(column=3, row=1, sticky = W)
 

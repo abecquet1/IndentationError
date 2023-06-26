@@ -41,7 +41,6 @@ class App(Tk):
         self.attributes('-fullscreen', True)
 
         # Bindings
-        self.bind('<Escape>',lambda e: self.destroy())
         self.bind('<Alt-Return>', self.full_screen)
 
         
@@ -63,7 +62,6 @@ class App(Tk):
 
         # Lancement du menu
         self.menu.show()
-        self.menu.root.focus_set()
 
 
     def full_screen(self, event):

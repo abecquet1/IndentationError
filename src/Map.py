@@ -82,6 +82,8 @@ class Map(Fenetre_Nav):
         b_man.bind('<Leave>', lambda e: b_man.config(style = 'clickable.TLabel'))
         b_man.bind('<Enter>', lambda e: b_man.config(style = 'hovered.TLabel'))
 
+     
+
         b_men.grid(column=1, row=1, sticky = W)
         b_man.grid(column=10, row=1, sticky = W)
 
@@ -104,6 +106,10 @@ class Map(Fenetre_Nav):
 
 
 class WMap(Map):
+    def show(self):
+        super().show()
+        self.frame.bind('<Escape>', lambda e : self.to_men(e), add = "")
+
     def to_map(self, chap, event):
         """Permet de lancer chapitre"""
         print(f"opening chapter {chap}")
@@ -167,7 +173,8 @@ class CMap(Map):
         b_wmap = ttk.Label(self.nav, text="> Wmap", style = 'clickable.TLabel')
         b_wmap.bind('<Leave>', lambda e: b_wmap.config(style = 'clickable.TLabel'))
         b_wmap.bind('<Enter>', lambda e: b_wmap.config(style = 'hovered.TLabel'))
-        b_wmap.bind('<1>', lambda e: self.to_wmap(e))
+        b_wmap.bind('<1>', self.to_wmap)
+        self.frame.bind('<Escape>', lambda e : self.to_wmap(e), add = "")
         b_wmap.grid(column=2, row=1, sticky = W)
 
 
