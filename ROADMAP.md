@@ -27,8 +27,8 @@
 
 ## Tests
 - [ ] niveaux sans fonctions
--- [ ] états de variables
--- [ ] print
+- - [ ] états de variables
+- - [ ] print
 - [ ] interdire certaines commandes 
 - [ ] commande arret code
  
