@@ -73,10 +73,11 @@ class LateralFrame(TextFrame):
         self.text = Text(self.border, 
                          height=self.width, #56,
                          width= self.height, #74,
-                         font = "Courier 12",
+                         font = "Courier 18",
                          xscrollcommand = True,
                          bg = "gray10",
-                         fg = "white")
+                         fg = "white",
+                         wrap = WORD)
 
         
         self.scroll = Scrollbar(self.border)
@@ -130,7 +131,7 @@ class ConsoleFrame(TextFrame):
                              height = self.height,#13
                              lexer=pygments.lexers.PythonLexer,
                              color_scheme="ayu-dark",
-                             font = "Courier 12",
+                             font = "Courier 18",
                              tab_width = 4)
 
 
@@ -233,7 +234,6 @@ class CodeFrame(TextFrame):
     
     def save(self, event):
         """ Sauvegarde le contenu de la fenêtre dans le fichier de savegarde de l'IDE."""
-        self.ideux.console.text.insert(END, "Fichier sauvegardé.\n>>> ")
         self.ideux.saved = True
         with open(self.ideux.c_save, 'w') as file:
             file.write(self.text.get(1.0, END))
@@ -245,7 +245,7 @@ class CodeFrame(TextFrame):
         """ Exécute le code en affichant la sortie standard dans la console de l'IDE."""
         self.ideux.context = {}
         self.save(event)
-        self.ideux.console.text.insert(END, "Éxécution du code (+save + context wipe):\n")
+        self.ideux.console.text.insert(END, "Éxécution du code :\n")
 
         # Gestion des sorties
         old_stdout = sys.stdout
@@ -353,7 +353,7 @@ class CodeFrame(TextFrame):
                              height = self.height,
                              lexer=pygments.lexers.PythonLexer,
                              color_scheme="ayu-dark",
-                             font = "Courier 12",
+                             font = "Courier 18",
                              tab_width = 4)
         
         
@@ -381,15 +381,13 @@ class CodeFrame(TextFrame):
         """ Bindings."""
         self.text.bind('<F5>', self.run)
         self.text.bind('<F6>', self.test)
-        self.text.bind('<Control-s>', self.save)
         self.text.bind("<Return>", lambda ev:self.text.after(1, self.autoIndent))
         s = "### PROGRAMME : Zone d'édition ###\n\n"
         s+= "Cette zone vous permet d'écrire votre programme Python.\n\n"
         s+= "Commandes :\n"
         s+= "   --- F5 : exécute le programme dans la console.\n"
         s+= "   --- F6 : teste le programme\n"
-        s+= "   --- Ctrl + S : sauvegarde le programme"
-        self.h_button.bind("<1>", lambda e: Context.contextFrame(s,self.root, 50 , 9, e))
+        self.h_button.bind("<1>", lambda e: Context.contextFrame(s,self.root, 50 , 8, e))
 
 
         
