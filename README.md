@@ -1,12 +1,21 @@
 # Indentation Error
 
+
+## Description
+
 Un jeu moche pour apprendre le python. 
 
-Actuellement en alpha. :p
+
+## Version
+
+Actuellement en alpha. Plus d'info dans [ROADMAP](ROADMAPmd)
+
+
+## Lancement
 
 Assurez-vous de disposer de la [dernière version de Python](https://www.python.org/downloads/) :
 
-Installer les modules `chlorophyll` et `pygments` : 
+Installez les modules `chlorophyll` et `pygments` : 
 
 `python -m pip install chlorophyll`
 `python -m pip install pygments`
