@@ -113,7 +113,6 @@ class WMap(Map):
 
     def to_map(self, chap, event):
         """Permet de lancer chapitre"""
-        print(f"opening chapter {chap}")
         self.root.cmap = CMap(self.root, f"..\\data\\{chap}\\cmap.json",chap)
         self.hide(event)
         self.root.show_cmap(chap, event)
@@ -159,7 +158,6 @@ class CMap(Map):
 
     def to_niv(self, ex, event):
         """Ouvre un niveau du chapitre"""
-        print(f"opening level {ex}")
         self.root.niv = Niveau(self.root, 
                                ex, 
                                f"..\\data\\{self.chap}\\{ex}\\save.py", 

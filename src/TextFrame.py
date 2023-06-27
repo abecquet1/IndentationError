@@ -174,7 +174,7 @@ class ConsoleFrame(TextFrame):
         """ Éxécute la commande console."""
         try :
             # try / except pour pouvoir afficher correctement une erreur éventuelle.
-
+            self.ideux.context["__res__"] = None
             if self.text.index("insert lineend") == self.text.index("end -1c") and self.text.count("end -1c linestart", "insert")[0]>3:
                 # on s'assure que le curseur est au bon endroit
                 
@@ -186,7 +186,6 @@ class ConsoleFrame(TextFrame):
                     self.text.insert(END, "\n")
                     self.ideux.out = StringIO()
                     sys.stdout = self.ideux.out
-
                     # On éxécute la commande en essaynt de récupérer un éventuel résultat
                     try : 
                         exec(f"__res__ = ({s})", self.ideux.context)

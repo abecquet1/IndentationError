@@ -124,7 +124,7 @@ class Menu(Fenetre):
         self.main.columnconfigure(1, weight = 1)
 
         # Titre
-        ttk.Label(self.main, text="INDENTATION\nERROR [0.5]", style = "titre.TLabel").grid(column = 1, row = 1)
+        ttk.Label(self.main, text="INDENTATION\nERROR [0.7]", style = "titre.TLabel").grid(column = 1, row = 1)
 
 
         # Bindings 

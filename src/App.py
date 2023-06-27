@@ -52,6 +52,7 @@ class App(Tk):
         with open("..\\opt\\style.json", 'r') as f:
             self.style = json.load(f)["selected_style"]
 
+
         self.style = self.style_dict[self.style]
         
         s = ttk.Style()
