@@ -36,7 +36,7 @@
 
 ## Map
 - [x] rendre ça + joli
-- [ ] exerices bloqués
+- [x] exerices bloqués
 
 
 ## Déploiement
