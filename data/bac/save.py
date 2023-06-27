@@ -6,4 +6,3 @@ def reverse(s):
 
 def palin(s):
 	return s == reverse(s)
-	coucou

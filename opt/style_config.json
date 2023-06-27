@@ -1,0 +1,88 @@
+{
+    "sombre" : {
+        "app_bg" : "gray5",
+        "app_fg" : "white",
+
+        "map_fg" : "white",
+        "map_bg" : "gray10",
+        "node_locked" : "gray",
+        "node_unlocked" : "orange",
+        "node_done" : "green",
+        "node_edge" : "gray",
+
+        "border" : "gray",
+        "code_fg" : "white",
+        "code_color_scheme" : "bayu-dark", 
+        "console_color_scheme" : "bayu-dark",
+
+        "context_bg" : "gray10",
+        "context_fg" : "white",
+        "context_border" : "gray"
+    },
+
+    "faize" : {
+        "app_bg" : "#14142D",
+        "app_fg" : "white",
+
+        "map_bg" : "#0A0E14",
+        "map_fg" : "white",
+        "node_locked" : "gray",
+        "node_unlocked" : "orange",
+        "node_done" : "green",
+        "node_edge" : "gray",
+
+        "border" : "gray",
+        "code_fg" : "white",
+        "code_color_scheme" : "ayu-dark", 
+        "console_color_scheme" : "ayu-dark",
+
+        "context_bg" : "#0A0E14",
+        "context_fg" : "white",
+        "context_border" : "gray"
+    },
+
+    "clair" : {
+        "app_bg" : "white",
+        "app_fg" : "gray20",
+
+        "map_bg" : "white",
+        "map_fg" : "gray20",
+        "node_locked" : "gray",
+        "node_unlocked" : "orange",
+        "node_done" : "green",
+        "node_edge" : "gray",
+
+        "border" : "gray",
+        "code_fg" : "gray20",
+        "code_color_scheme" : "bayu-light", 
+        "console_color_scheme" : "bayu-light",
+
+        "context_bg" : "white",
+        "context_fg" : "gray20",
+        "context_border" : "gray"
+    },
+    
+    
+    "clown" : {
+        "app_bg" : "orange",
+        "app_fg" : "green",
+
+        "map_bg" : "blue",
+        "node_locked" : "gray",
+        "node_unlocked" : "orange",
+        "node_done" : "green",
+        "node_edge" : "gray",
+
+        "border" : "red",
+        "code_fg" : "blue",
+        "code_color_scheme" : "ayu-dark", 
+        "console_color_scheme" : "ayu-dark",
+
+        "context_bg" : "red",
+        "context_fg" : "blue",
+        "context_border" : "green"
+    }
+}
+
+
+

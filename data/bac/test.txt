@@ -7,5 +7,3 @@ palin(s:str)->bool
 "kayak" ; True
 "())("; True
 "()()"; False
-"dsjlkfkdslfkdjslkfjdlskjfdlksjflkdsjflkdjs lfkdjslkfjdslkjfdlskjfdl"; False
-coucou

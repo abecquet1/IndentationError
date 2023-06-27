@@ -10,15 +10,16 @@ from Fenetre import *
 
 
 class Noeud:
-    def __init__(self, can, nom, x, y, r, color):
+    def __init__(self, root, can, nom, x, y, r, color):
+        self.root = root
         self.nom = nom
         self.can = can
         self.color = color
         self.r = r
         self.x = x
         self.y = y
-        self.icone = can.create_oval(x-r, y-r, x+r, y+r, fill = color, outline = "white", width = 2)
-        self.etiquette = can.create_text(x-r//4, y-(3*r)//2, text = self.nom, font = "Courier 12 bold", fill = "white")
+        self.icone = can.create_oval(x-r, y-r, x+r, y+r, fill = color, outline = root.style["node_edge"], width = 2)
+        self.etiquette = can.create_text(x-r//4, y-(3*r)//2, text = self.nom, font = "Courier 12 bold", fill = root.style["map_fg"])
         
     def creer_arc(self, n):
         ux = n.x - self.x
@@ -26,7 +27,7 @@ class Noeud:
         N = sqrt(ux**2+uy**2)
         ux/=N
         uy/=N
-        self.can.create_line(self.x+self.r*ux, self.y+self.r*uy, n.x-n.r*ux, n.y-n.r*uy, fill = "gray", width = 2)
+        self.can.create_line(self.x+self.r*ux, self.y+self.r*uy, n.x-n.r*ux, n.y-n.r*uy, fill = self.root.style["node_edge"], width = 2)
 
 
 
@@ -69,7 +70,7 @@ class Map(Fenetre_Nav):
         
     def show(self):
         super().show()
-        self.can = Canvas(self.main, width = 1910, height = 1018, background = 'black')
+        self.can = Canvas(self.main, width = 1910, height = 1018, background = self.root.style["map_bg"])
 
         # NAV ZONE
         b_men = ttk.Label(self.nav, text="> Menu", style = 'clickable.TLabel')
@@ -122,9 +123,10 @@ class WMap(Map):
             dic = json.load(f)
 
         for ch in dic:
-            c = "orange"
+            c = self.root.style["node_unlocked"]
 
-            noeud = Noeud(self.can,
+            noeud = Noeud(self.root,
+                          self.can,
                           ch, 
                           int(dic[ch]["x"]),
                           int(dic[ch]["y"]),
@@ -186,13 +188,14 @@ class CMap(Map):
             prog = json.load(f)
 
         for ex in dic:
-            c = "orange"
+            c = self.root.style["node_unlocked"]
             if prog["niv"][self.chap][ex]["done"]:
-                c = "green"
+                c = self.root.style["node_done"]
             if prog["niv"][self.chap][ex]["locked"]:
-                c = "gray"
+                c = self.root.style["node_locked"]
 
-            noeud = Noeud(self.can,
+            noeud = Noeud(self.root,
+                          self.can,
                           ex, 
                           int(dic[ex]["x"]),
                           int(dic[ex]["y"]),

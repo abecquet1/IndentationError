@@ -3,11 +3,13 @@ from tkinter import *
 from tkinter import ttk
 from io import StringIO
 import pygments.lexers              # need pip install 
+from pygments.styles import get_style_by_name
 from chlorophyll import CodeView    # need pip install 
 import json
 import sys
 import threading
 import time
+import toml
 
 # Modules projet
 import Test
@@ -40,7 +42,7 @@ class TextFrame:
         self.frame.grid(**kwargs)
         
         self.nav = ttk.Frame(self.frame, style = "noir.TFrame")
-        self.border = Frame(self.frame, bg = "gray")
+        self.border = ttk.Frame(self.frame, style = "border.TFrame")
         self.nav.grid(column = 1, row = 1, sticky = 'EW')
         self.nav.columnconfigure(1, weight = 1)
         self.nav.columnconfigure(2, weight = 1)
@@ -75,8 +77,8 @@ class LateralFrame(TextFrame):
                          width= self.height, #74,
                          font = "Courier 18",
                          xscrollcommand = True,
-                         bg = "gray10",
-                         fg = "white",
+                         bg = self.root.style["context_bg"],
+                         fg = self.root.style["context_fg"],
                          wrap = WORD)
 
         
@@ -86,8 +88,8 @@ class LateralFrame(TextFrame):
         self.scroll.config(command = self.text.yview)
 
         
-        self.text.grid(column = 1, row = 2, sticky = "NS")
-        self.scroll.grid(column = 2, row = 2, sticky = "NS")
+        self.text.grid(column = 1, row = 2, sticky = "NS", padx = (2,0), pady =(2, 2))
+        self.scroll.grid(column = 2, row = 2, sticky = "NS", padx = (0,2), pady =(2, 2))
 
         s = ""
         if isinstance(self.ideux, Fenetre.Niveau):
@@ -130,13 +132,13 @@ class ConsoleFrame(TextFrame):
                              width = self.width,#104
                              height = self.height,#13
                              lexer=pygments.lexers.PythonLexer,
-                             color_scheme="ayu-dark",
+                             color_scheme = toml.load(f"..\\opt\\colorschemes\\{self.root.style['console_color_scheme']}.toml"),
                              font = "Courier 18",
                              tab_width = 4)
 
 
         self.text.insert(1.0, ">>> ")
-        self.text.grid(column = 1, row = 2, columnspan = 2, sticky = "NSEW", padx = (2,2), pady =(2, 1))
+        self.text.grid(column = 1, row = 2, columnspan = 2, sticky = "NSEW", padx = (2,2), pady =(2, 2))
 
         s = "### CONSOLE : Zone de sortie ###\n\n"
         s+= "Cette zone vous permet de visualiser l'exécution de votre programme.\n\n"
@@ -348,16 +350,17 @@ class CodeFrame(TextFrame):
             self.titre = f"PROGRAMME : {self.ideux.chap.upper()}/{self.ideux.nom.upper()}"
         super().grid(**kwargs)
 
+
         self.text = CodeView(self.border,
                              width = self.width,
                              height = self.height,
                              lexer=pygments.lexers.PythonLexer,
-                             color_scheme="ayu-dark",
+                             color_scheme = toml.load(f"..\\opt\\colorschemes\\{self.root.style['code_color_scheme']}.toml"),
                              font = "Courier 18",
                              tab_width = 4)
         
         
-        self.text.grid(column = 1, row = 2, columnspan = 2, sticky = "NSEW", padx = (2,2), pady =(2, 1))
+        self.text.grid(column = 1, row = 2, columnspan = 2, sticky = "NSEW", padx = (2,2), pady =(2, 2))
         self.text.bind("<Escape>",  lambda e: self.ideux.frame.focus_set() , add = "+")
         
 

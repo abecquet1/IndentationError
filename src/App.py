@@ -1,6 +1,7 @@
 # Modules python 
 from tkinter import ttk
 from tkinter import *
+from json import load
 
 # Modules projet
 from Fenetre import *
@@ -45,19 +46,85 @@ class App(Tk):
 
         
         # Styles
+        with open("..\\opt\\style_config.json", 'r') as f:
+            self.style_dict = json.load(f)
+
+        with open("..\\opt\\style.json", 'r') as f:
+            self.style = json.load(f)["selected_style"]
+
+        self.style = self.style_dict[self.style]
+        
         s = ttk.Style()
-        s.configure("TFrame", background='white')
-        s.configure("noir.TFrame", background='black')
+
         
         s.configure("rouge.TFrame", background='red')	
         s.configure("vert.TFrame", background='green')	
         s.configure("bleu.TFrame", background='blue')
-                
-        s.configure("titre.TLabel", font = 'Courier 48 bold', anchor = "CENTER", foreground = "white", background = "black")
-        s.configure("fen_titre.TLabel", font = 'Courier 18', anchor = "w", foreground = "white", background = "black")
+
+
+
+        # Style 
+        s.configure("TFrame", 
+                    background = self.style["app_bg"]
+        )
         
-        s.configure("clickable.TLabel", font = 'Courier 18', anchor = "w", foreground = "white", background = "black")
-        s.configure("hovered.TLabel", font = 'Courier 18 underline', anchor = "w", foreground = "white", background = "black")
+        s.configure("noir.TFrame", 
+                    background = self.style["app_bg"]
+        )
+
+        s.configure("border.TFrame", 
+                    background = self.style["border"]
+        )
+
+        s.configure("context.TFrame", 
+                    background = self.style["context_bg"]
+        )
+
+        s.configure("context_border.TFrame", 
+                    background = self.style["context_border"]
+        )
+        
+        s.configure("titre.TLabel", 
+                    font = 'Courier 48 bold', 
+                    anchor = "CENTER", 
+                    foreground = self.style["app_fg"], 
+                    background = self.style["app_bg"]
+        )
+        
+        s.configure("fen_titre.TLabel", 
+                    font = 'Courier 18 bold', 
+                    anchor = "w", 
+                    foreground = self.style["app_fg"], 
+                    background = self.style["app_bg"]
+        )
+
+        s.configure("clickable.TLabel",
+                     font = 'Courier 18 bold', 
+                     anchor = "w", 
+                     foreground = self.style["app_fg"], 
+                     background = self.style["app_bg"]
+        )
+
+        s.configure("hovered.TLabel", 
+                    font = 'Courier 18  bold underline', 
+                    anchor = "w", 
+                    foreground = self.style["app_fg"], 
+                    background = self.style["app_bg"]
+        )
+
+        s.configure("context_clickable.TLabel",
+                     font = 'Courier 18 bold', 
+                     anchor = "w", 
+                     foreground = self.style["context_fg"], 
+                     background = self.style["context_bg"]
+        )
+
+        s.configure("context_hovered.TLabel", 
+                    font = 'Courier 18  bold underline', 
+                    anchor = "w", 
+                    foreground = self.style["context_fg"], 
+                    background = self.style["context_bg"]
+        )
         
 
         # Lancement du menu
@@ -117,10 +184,6 @@ class App(Tk):
         else:
             self.console.text.insert(END, s)
             self.console.text.see(END)
-
-
-
-
 
 
 

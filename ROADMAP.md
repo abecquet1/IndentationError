@@ -50,8 +50,9 @@
 
 
 ## Options
-- [ ] rendre les styles paramétrables
+- [ ] menu options
+- [x] rendre les styles paramétrables
 - [ ] accessibilité
-- - [ ] thème sombre / clair
+- - [x] thème sombre / clair
 - - [ ] filtres daltonien
 - [ ] réinitialisation de la progression 
