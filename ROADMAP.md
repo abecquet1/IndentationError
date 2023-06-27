@@ -10,7 +10,6 @@
 - [x] save on exec 
 - [x] save on test
 - [x] save on quit
-- [ ] affichage de messages
 - [x] bind echap correctement 
 - [x] confirmation sortie
 
