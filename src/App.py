@@ -54,7 +54,7 @@ class App(Tk):
         s.configure("bleu.TFrame", background='blue')
                 
         s.configure("titre.TLabel", font = 'Courier 48 bold', anchor = "CENTER", foreground = "white", background = "black")
-        s.configure("fen_titre.TLabel", font = 'Courier 12 bold', anchor = "w", foreground = "white", background = "black")
+        s.configure("fen_titre.TLabel", font = 'Courier 18', anchor = "w", foreground = "white", background = "black")
         
         s.configure("clickable.TLabel", font = 'Courier 18', anchor = "w", foreground = "white", background = "black")
         s.configure("hovered.TLabel", font = 'Courier 18 underline', anchor = "w", foreground = "white", background = "black")

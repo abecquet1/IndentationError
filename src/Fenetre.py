@@ -147,7 +147,7 @@ class Menu(Fenetre):
 
         self.frame.bind('<Escape>', lambda e: Context.confirmation("Êtes-vous sûr de vouloir quitter ?", self.root, self.root.destroy) , add= "+") 
             
-    
+
 
     def to_bac(self, event):
         """ Affiche le bac à sable."""
@@ -229,7 +229,7 @@ class Ideux(Fenetre_Nav):
         self.main.columnconfigure(2, weight=1)
 
         # Code
-        self.code = CodeFrame(self.root, self, 104, 36)
+        self.code = CodeFrame(self.root, self, 80, 24)
         self.code.grid(row = 1, column =  1)
         self.code.bindings()
         with open(self.c_save, 'r', encoding = 'utf-8') as f: 
@@ -237,14 +237,14 @@ class Ideux(Fenetre_Nav):
 
 
         # Console
-        self.console = ConsoleFrame(self.root, self, 104, 11, titre = "CONSOLE")
+        self.console = ConsoleFrame(self.root, self, 80, 8, titre = "CONSOLE")
         self.console.grid(row =2, column = 1)
         
 
 
         # Latéral
-        self.lateral = LateralFrame(self.root, self,  54, 72)
-        self.lateral.grid(row = 1, column =2, rowspan = 2, padx = (10,10))
+        self.lateral = LateralFrame(self.root, self,  36, 46)
+        self.lateral.grid(row = 1, column =2, rowspan = 2, padx = (10,10), pady = (0,12))
         with open(self.l_save, 'r', encoding = 'utf-8') as f:
             self.lateral.text.insert(END, f.read().rstrip())
 
@@ -275,6 +275,10 @@ class Bac(Ideux):
     def get_test_cases(self):
         """ Acquiert les tests unitaire à partir du panneau latéral. """
         return self.lateral.text.get(1.0, END)
+    
+    def hide(self, event):
+        self.code.save(event)
+        super().hide(event)
 
 
 ################## NIVEAU ################## 
@@ -325,3 +329,7 @@ class Niveau(Ideux):
         """ Affiche la carte du chapitre."""
         self.hide(event)
         self.root.show_cmap(self.chap, event)
+
+    def hide(self, event):
+        self.code.save(event)
+        super().hide(event)

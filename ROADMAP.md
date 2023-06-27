@@ -9,10 +9,10 @@
 ## Ergonomie
 - [x] save on exec 
 - [x] save on test
+- [x] save on quit
 - [ ] affichage de messages
 - [x] bind echap correctement 
 - [x] confirmation sortie
-- [ ] avertissement en cas de non sauvegarde
 
 
 ## Console 
@@ -49,13 +49,9 @@
 - [ ] commentaires
 
 
-
 ## Options
 - [ ] rendre les styles paramétrables
-- [ ] plein écran
-- [ ] resolution 
 - [ ] accessibilité
-- - [ ] police dys
 - - [ ] thème sombre / clair
 - - [ ] filtres daltonien
 - [ ] réinitialisation de la progression 

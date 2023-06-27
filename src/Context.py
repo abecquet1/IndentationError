@@ -8,11 +8,12 @@ def contextFrame(t, root, w, h, event):
 
     x = win.winfo_x()
     y = win.winfo_y()
-    win.geometry("+%d+%d" %(x + root.winfo_pointerx()-390, y + root.winfo_pointery()-10))
+    win.geometry("+%d+%d" %(x + root.winfo_pointerx()-690, y + root.winfo_pointery()-20))
     
-    text = Text(win, width = w, height = h, wrap = WORD, bg ="black", fg = "white")
+    text = Text(win, width = w, height = h, wrap = WORD, bg ="black", fg = "white", font = "courier 18")
+    
     text.insert(END, t)
-    text.config( state = "disabled")
+    text.config(state = "disabled")
     text.grid()
     win.bind('<Leave>', lambda e: win.destroy())
     win.mainloop()
@@ -66,6 +67,11 @@ def confirmation(text, root, command, condition = True):
         b2.bind('<Enter>', lambda e: b2.config(style = 'hovered.TLabel'))
         b2.bind('<Leave>', lambda e: b2.config(style = 'clickable.TLabel'))
         
+        win.bind('<Return>', lambda e: oui())
+        win.bind('<Escape>', lambda e: win.destroy())
+
+        win.focus_set()
+
         win.tk.call('tk::PlaceWindow', win)
 
 
