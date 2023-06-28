@@ -45,6 +45,7 @@ class Fenetre:
         self.shown = False
         self.frame.destroy()
         self.root.focus_set()
+        self.root.unbind('<Escape>')
 
 
 
@@ -63,13 +64,14 @@ class Fenetre_Nav(Fenetre):
         """ Affiche la fenêtre."""
         super().show()
     
-        self.frame.rowconfigure(2, weight=10)
+        self.frame.rowconfigure(2, weight=1)
         
         self.nav = ttk.Frame(self.frame, style = 'noir.TFrame', width = 100, height = 300)
         self.nav.grid(column=1, row=1, sticky = "NSEW")
 
         self.main = ttk.Frame(self.frame, style = 'noir.TFrame', width = 100, height = 300)
         self.main.grid(column=1, row=2, sticky = "NSEW")
+        self.frame.columnconfigure(1, weight = 1)
 
 
     def to_men(self, event):
@@ -91,6 +93,7 @@ class Menu(Fenetre):
         self.frame.columnconfigure(1, weight=1)
         self.frame.columnconfigure(2, weight=4)
         self.frame.rowconfigure(1, weight=1)
+
 
         # Nav
         self.nav = ttk.Frame(self.frame, style = 'noir.TFrame', width = 100, height = 300)
@@ -144,8 +147,9 @@ class Menu(Fenetre):
 
         b_opt.bind('<Leave>', lambda e: b_opt.config(style = 'clickable.TLabel'))
         b_opt.bind('<Enter>', lambda e: b_opt.config(style = 'hovered.TLabel'))
+        b_opt.bind('<1>', self.to_opt)
 
-        self.frame.bind('<Escape>', lambda e: Context.confirmation("Êtes-vous sûr de vouloir quitter ?", self.root, self.root.destroy) , add= "+") 
+        self.root.bind('<Escape>', lambda e: Context.confirmation("Êtes-vous sûr de vouloir quitter ?", self.root, self.root.destroy) , add= "+") 
             
 
 
@@ -163,6 +167,13 @@ class Menu(Fenetre):
         """ Affiche la carte du monde."""
         self.hide(event)
         self.root.show_wmap(event)
+
+    def to_opt(self, event):
+        """ Affiche la carte du monde."""
+        self.hide(event)
+        self.root.show_opt(event)
+
+    
 
         
 
@@ -240,8 +251,6 @@ class Ideux(Fenetre_Nav):
         self.console = ConsoleFrame(self.root, self, 80, 8, titre = "CONSOLE")
         self.console.grid(row =2, column = 1)
         
-
-
         # Latéral
         self.lateral = LateralFrame(self.root, self,  36, 46)
         self.lateral.grid(row = 1, column =2, rowspan = 2, padx = (10,10), pady = (0,12))
@@ -268,9 +277,8 @@ class Bac(Ideux):
     def show(self):
         """ Affiche le niveau."""
         super().show()
-        def menu():
-            self.to_men(None)
-        self.frame.bind('<Escape>',  self.to_men) 
+
+        self.root.bind('<Escape>',  self.to_men) 
 
     def get_test_cases(self):
         """ Acquiert les tests unitaire à partir du panneau latéral. """
@@ -308,7 +316,7 @@ class Niveau(Ideux):
         b_map.bind('<Leave>', lambda e: b_map.config(style = 'clickable.TLabel'))
         b_map.bind('<Enter>', lambda e: b_map.config(style = 'hovered.TLabel'))
         b_map.bind('<1>', self.to_map)
-        self.frame.bind('<Escape>', self.to_map, add= "")
+        self.root.bind('<Escape>', self.to_map, add= "")
 
         b_map.grid(column=3, row=1, sticky = W)
 

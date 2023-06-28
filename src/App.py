@@ -6,6 +6,7 @@ from json import load
 # Modules projet
 from Fenetre import *
 from Map import * 
+from Option import *
 
 
 ### APP ###
@@ -30,7 +31,7 @@ class App(Tk):
         self.wmap = WMap(self, f"..\\data\\wmap.json")
         self.map = None
         self.niv = None
-        self.opt = None
+        self.opt = Option(self)
         self.pgr = None
         self.console = None
 
@@ -40,27 +41,56 @@ class App(Tk):
         self.columnconfigure(0, weight=1)
         self.rowconfigure(0, weight=1)
         self.attributes('-fullscreen', True)
+        self.styledict = {}
+        self.style = ""
 
         # Bindings
         self.bind('<Alt-Return>', self.full_screen)
 
-        
+        self.set_style()
+
+        # Lancement du menu
+        self.menu.show()
+
+    
+    def set_style(self):
         # Styles
         with open("..\\opt\\style_config.json", 'r') as f:
             self.style_dict = json.load(f)
 
         with open("..\\opt\\style.json", 'r') as f:
-            self.style = json.load(f)["selected_style"]
+            self.style_name = json.load(f)["selected_style"]
 
-
-        self.style = self.style_dict[self.style]
+        self.style = self.style_dict[self.style_name]
         
         s = ttk.Style()
 
-        
+        color = "green"
+        s.configure("combo.TCombobox", 
+                    foreground = "black",
+                    background= "white",
+
+                    selectbackground = "white",
+                    selectforeground = "black",
+                    
+                    bordercolor= color,
+                    darkcolor =color,
+                    focusfill =color,
+
+                    insertcolor =  "white",
+                    lightcolor =  "blue",
+
+
+                    )
+
+
         s.configure("rouge.TFrame", background='red')	
         s.configure("vert.TFrame", background='green')	
         s.configure("bleu.TFrame", background='blue')
+
+
+
+        
 
 
 
@@ -128,9 +158,6 @@ class App(Tk):
         )
         
 
-        # Lancement du menu
-        self.menu.show()
-
 
     def full_screen(self, event):
         """ Active ou désactive le mode plein écran."""
@@ -156,6 +183,10 @@ class App(Tk):
     def show_cmap(self, chap, event):
         """ Affiche la carte du chapitre."""
         self.cmap.show()
+
+    def show_opt(self, event):
+        """ Affiche la carte du chapitre."""
+        self.opt.show()
 
 
     def report_callback_exception(self, exc_type, exc_value, tb):

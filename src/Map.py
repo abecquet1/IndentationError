@@ -109,7 +109,7 @@ class Map(Fenetre_Nav):
 class WMap(Map):
     def show(self):
         super().show()
-        self.frame.bind('<Escape>', lambda e : self.to_men(e), add = "")
+        self.root.bind('<Escape>', lambda e : self.to_men(e), add = "")
 
     def to_map(self, chap, event):
         """Permet de lancer chapitre"""
@@ -174,7 +174,7 @@ class CMap(Map):
         b_wmap.bind('<Leave>', lambda e: b_wmap.config(style = 'clickable.TLabel'))
         b_wmap.bind('<Enter>', lambda e: b_wmap.config(style = 'hovered.TLabel'))
         b_wmap.bind('<1>', self.to_wmap)
-        self.frame.bind('<Escape>', lambda e : self.to_wmap(e), add = "")
+        self.root.bind('<Escape>', lambda e : self.to_wmap(e), add = "")
         b_wmap.grid(column=2, row=1, sticky = W)
 
 
