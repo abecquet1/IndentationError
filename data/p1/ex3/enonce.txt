@@ -1,0 +1,1 @@
+Écrire un programme permettant d'intervertir les contenus de deux variables a et b.

@@ -1,0 +1,7 @@
+TYPE : CCC
+CTXT : a:any ; b:any -> a:any ; b:any
+DATA :
+a = 1 ; b = 2 -> a = 2 ; b = 1
+a = "coucou" ; b = "hello" -> a = "hello" ; b = "coucou"
+a = 1.2 ; b = 3.14 -> a = 3.14 ; b = 1.2
+a = True ; b = False -> a = False ; b = True

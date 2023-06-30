@@ -2,7 +2,7 @@
 from tkinter import *
 from tkinter import ttk
 from io import StringIO
-from tkinter.messagebox import *
+from tkinter import simpledialog 
 
 # Modules projet 
 from TextFrame import *
@@ -127,7 +127,7 @@ class Menu(Fenetre):
         self.main.columnconfigure(1, weight = 1)
 
         # Titre
-        ttk.Label(self.main, text="INDENTATION\nERROR [0.7]", style = "titre.TLabel").grid(column = 1, row = 1)
+        ttk.Label(self.main, text="INDENTATION\nERROR [0.9]", style = "titre.TLabel").grid(column = 1, row = 1)
 
 
         # Bindings 
@@ -190,7 +190,10 @@ class Ideux(Fenetre_Nav):
     ------ lateral -> énoncé d'un exercice ou tests unitaires 
     """
 
+    
+
     def __init__(self, root, nom, c_save, l_save):
+        
         """ Constructeur de l'IDE.
         --- nom : str -> le nom de la fenêtre (bac ou niv)
         --- c_save : str -> chemin du fichier de sauvegarde du code
@@ -203,13 +206,22 @@ class Ideux(Fenetre_Nav):
         self.code = None
         self.console = None
         self.lateral = None
-        self.context = {}
+        self.__context__ =  {"input" : self.input}
+        self.context =  {"input" : self.input}
         self.out = StringIO()
+        self.inp = StringIO()
         self.__stdout__ = sys.stdout
-
+        self.__stdin__ = sys.stdin
         self.c_save = c_save
         self.l_save = l_save
         self.saved = True 
+
+
+    def input(self, *args): 
+        prompt = ""
+        if len(args) != 0 :
+            prompt = args[0]
+        return simpledialog.askstring("input", prompt)
 
 
 
@@ -248,7 +260,7 @@ class Ideux(Fenetre_Nav):
 
 
         # Console
-        self.console = ConsoleFrame(self.root, self, 80, 8, titre = "CONSOLE")
+        self.console = ConsoleFrame(self.root, self, 80, 8, titre = "Console")
         self.console.grid(row =2, column = 1)
         
         # Latéral
@@ -282,7 +294,7 @@ class Bac(Ideux):
 
     def get_test_cases(self):
         """ Acquiert les tests unitaire à partir du panneau latéral. """
-        return self.lateral.text.get(1.0, END)
+        return self.lateral.text.get(1.0, END).split("\n")
     
     def hide(self, event):
         self.code.save(event)
@@ -329,7 +341,7 @@ class Niveau(Ideux):
     def get_test_cases(self):
         """ Acquiert les tests unitaire à partir du fichier de sauvegarde. """
         with open(self.f_test, 'r', encoding='utf-8') as file:
-            data = file.read().rstrip()
+            data = file.readlines()
         return data
 
 

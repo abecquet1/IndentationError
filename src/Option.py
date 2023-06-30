@@ -15,12 +15,12 @@ class Option(Fenetre_Nav):
 
         s = s.lower()
 
-        with open("..\\opt\\style.json", 'r') as f:
+        with open("..\\opt\\style.json", 'r', encoding="utf-8") as f:
             obj = json.load(f)
 
         obj["selected_style"] = s
 
-        with open("..\\opt\\style.json", 'w') as f:
+        with open("..\\opt\\style.json", 'w', encoding="utf-8") as f:
             json.dump(obj, f, indent=4)
 
         self.hide(event)

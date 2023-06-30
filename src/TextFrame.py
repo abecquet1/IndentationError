@@ -10,6 +10,7 @@ import sys
 import threading
 import time
 import toml
+import inspect
 
 # Modules projet
 import Test
@@ -21,7 +22,7 @@ import Fenetre
 ### TextFrame ###
 class TextFrame:
     """ Classe abstraite. Zone de texte avec du joli autour liée à un IDE."""
-    def __init__(self, root, ideux, w, h, titre = "ENONCE / TEST CASES"):
+    def __init__(self, root, ideux, w, h, titre = "Énoncé / Tests unitaires"):
         self.root = root
         self.ideux = ideux
 
@@ -236,17 +237,20 @@ class CodeFrame(TextFrame):
     def save(self, event):
         """ Sauvegarde le contenu de la fenêtre dans le fichier de savegarde de l'IDE."""
         self.ideux.saved = True
-        with open(self.ideux.c_save, 'w') as file:
+        with open(self.ideux.c_save, 'w', encoding="utf-8") as file:
             file.write(self.text.get(1.0, END))
-        with open(self.ideux.l_save, 'w') as file:
-            file.write(self.ideux.lateral.text.get(1.0, END))
+        if isinstance(self.ideux, Fenetre.Bac):
+            with open(self.ideux.l_save, 'w', encoding="utf-8") as file:
+                file.write(self.ideux.lateral.text.get(1.0, END))
+
+
 
 
     def run(self, event):
         """ Exécute le code en affichant la sortie standard dans la console de l'IDE."""
-        self.ideux.context = {}
+        self.ideux.context = self.ideux.__context__
         self.save(event)
-        self.ideux.console.text.insert(END, "Éxécution du code :\n")
+        self.ideux.console.text.insert(END, f" ---------------------- Éxécution de {self.ideux.nom}.py ----------------------\n")
 
         # Gestion des sorties
         old_stdout = sys.stdout
@@ -284,31 +288,113 @@ class CodeFrame(TextFrame):
         """ Effectue les tests."""
         # Import des test cases
         self.save(event)
-        self.ideux.context = {}
+        self.ideux.context = self.ideux.__context__
         test_cases = self.get_test_cases()
 
-        info = Test.get_info(test_cases.split("\n")[0])
+        
                 
+        self.ideux.console.text.insert(END, f" ---------------------- Test de {self.ideux.nom}.py ---------------------------\n")
+
+        t = self.get_test_cases()
+        info = Test.get_info(t)
+
+        done = False 
+
+        if info['TYPE'] == "FAR":
+            self.ideux.console.text.insert(END, "\nTest de la fonction "+str(info['SIGN']['f_name'])+". \n")
+            s = self.text.get(1.0, END)
+            exec(s, self.ideux.context) 
+            exec(f"__fonction__ = {info['SIGN']['f_name']}", self.ideux.context)
+            arguments, resultats = Test.get_DATA_FAR(t)
 
 
-        self.ideux.console.text.insert(END, "Test de la fonction "+str(info['f_name'])+" :\n")
+            self.ideux.out = StringIO()
+            sys.stdout = self.ideux.out
 
-        # On redirige stdout et excepthook dans une SIO sui ne sera pas affichée
-        old_stdout = sys.stdout
-        sys.stdout = mystdout = StringIO()
 
-        # On éxécute le code en renommant f le fonction à tester
+            done = Test.test_FAR(arguments, resultats, self.ideux.context["__fonction__"])
 
-        #f = lambda : None
-        s = self.text.get(1.0, END)
 
-        exec(s, self.ideux.context) 
-        exec(f"__fonction__ = {info['f_name']}", self.ideux.context)
+            self.ideux.console.text.insert(END, self.ideux.out.getvalue())
+            self.ideux.out = StringIO()
+            sys.stdout = self.ideux.__stdout__
+
+
+
+        if info['TYPE'] == "FAO":
+            self.ideux.console.text.insert(END, "\nTest de la fonction "+str(info["SIGN"]['f_name'])+". \n")
+            s = self.text.get(1.0, END)
+            exec(s, self.ideux.context) 
+            exec(f"__fonction__ = {info['SIGN']['f_name']}", self.ideux.context)
+            arguments, resultats = Test.get_DATA_FAO(t)
+
+            self.ideux.out = StringIO()
+            sys.stdout = self.ideux.out
+
+            
+
+            done = Test.test_FAO(arguments, resultats, self.ideux.context["__fonction__"])
+
+            self.ideux.console.text.insert(END, self.ideux.out.getvalue())
+            self.ideux.out = StringIO()
+            sys.stdout = self.ideux.__stdout__
+
+
+
+        if info['TYPE'] == "FCC":
+            self.ideux.console.text.insert(END, "\nTest de la fonction "+str(info["SIGN"]['f_name'])+". \n")
+            s = self.text.get(1.0, END)
+
+
+            exec(s, self.ideux.context) 
+            exec(f"__fonction__ = {info['SIGN']['f_name']}", self.ideux.context)
+
+            CL1, CL2 = Test.get_DATA_FCC(t)
+
+            self.ideux.out = StringIO()
+            sys.stdout = self.ideux.out
+
+            done = Test.test_FCC(CL1, CL2, self.ideux.context["__fonction__"])
+
+            self.ideux.console.text.insert(END, self.ideux.out.getvalue())
+            self.ideux.out = StringIO()
+            sys.stdout = self.ideux.__stdout__
+
+
+        if info['TYPE'] == "CCC":
+            self.ideux.console.text.insert(END, "\nTest du code. \n")
+            s = self.text.get(1.0, END)
+            CL1, CL2 = Test.get_DATA_CCC(t)
+
+            self.ideux.out = StringIO()
+            sys.stdout = self.ideux.out
+            
+            
+            done = Test.test_CCC(CL1, CL2, s)
+
+            self.ideux.console.text.insert(END, self.ideux.out.getvalue())
+            self.ideux.out = StringIO()
+            sys.stdout = self.ideux.__stdout__
+
+
+        if info['TYPE'] == "CIO":
+            self.ideux.console.text.insert(END, "\nTest du code. \n")
+            s = self.text.get(1.0, END)
+            CL1, CL2 = Test.get_DATA_CIO(t)
+
+            self.ideux.out = StringIO()
+            sys.stdout = self.ideux.out
+
+            done = Test.test_CIO(CL1, CL2, s)
+
+            self.ideux.console.text.insert(END, self.ideux.out.getvalue())
+            self.ideux.out = StringIO()
+            sys.stdout = self.ideux.__stdout__
+
+
         
 
-        # On redirige stdout dans une SIO sui ne sera pas affichée et on appelle test_fonction
-        sys.stdout = mystdout = StringIO()
-        done = Test.test_fonction(test_cases, self.ideux.context["__fonction__"])
+        
 
         if done is not None:
 
@@ -334,7 +420,7 @@ class CodeFrame(TextFrame):
         
 
         
-        self.ideux.console.text.insert(END, mystdout.getvalue())
+        self.ideux.console.text.insert(END, self.ideux.out.getvalue())
         self.ideux.console.text.insert(END, ">>> ")
         self.text.mark_set("insert", END)
         self.ideux.console.text.see(END)
@@ -344,9 +430,9 @@ class CodeFrame(TextFrame):
     def grid(self, **kwargs):
         """ Positionne la zone."""
         if self.ideux.chap == "":
-            self.titre = f"PROGRAMME : BAC A SABLE"
+            self.titre = f"Éditeur : Bac à sable"
         else:
-            self.titre = f"PROGRAMME : {self.ideux.chap.upper()}/{self.ideux.nom.upper()}"
+            self.titre = f"Éditeur : {self.ideux.chap}/{self.ideux.nom}"
         super().grid(**kwargs)
 
 

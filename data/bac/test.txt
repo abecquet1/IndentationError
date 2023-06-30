@@ -1,9 +1,7 @@
-palin(s:str)->bool
-"" ; True
-"a" ; True
-"ab" ; False
-"coucou" ; False
-"abba" ; True
-"kayak" ; True
-"())("; True
-"()()"; False
+TYPE : CCC
+CTXT : a:any ; b:any -> a:any ; b:any
+DATA :
+a = 1 ; b = 2 -> a = 2 ; b = 1
+a = True ; b = False -> a = False ; b = True
+a = "a" ; b = "b" -> a = "b" ; b = "a"
+a = 1.14 ; b = 3.14 -> a = 3.14 ; b = 1.14

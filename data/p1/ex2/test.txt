@@ -1,4 +1,5 @@
-f(x:int)->int
-1;2
-2;4
-3;6
+TYPE : CIO
+DATA :
+"Toto" ; 12 -> "BonjourToto!Tuas12ans.\n"
+"Antoine" ; 33 -> "BonjourAntoine!Tuas33ans.\n"
+"Miaou" ; 3  -> "BonjourMiaou!Tuas3ans.\n"

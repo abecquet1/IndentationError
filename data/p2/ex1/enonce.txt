@@ -1,1 +1,1 @@
-
+Ecrire une fonction prenant en argument un entier n et affichant une ligne de n '#'

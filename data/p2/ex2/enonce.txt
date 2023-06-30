@@ -1,0 +1,1 @@
+Écrire une fonction sans argument et ajoutant 1 à une variable globale a 

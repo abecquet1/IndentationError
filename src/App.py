@@ -55,10 +55,10 @@ class App(Tk):
     
     def set_style(self):
         # Styles
-        with open("..\\opt\\style_config.json", 'r') as f:
+        with open("..\\opt\\style_config.json", 'r', encoding="utf-8") as f:
             self.style_dict = json.load(f)
 
-        with open("..\\opt\\style.json", 'r') as f:
+        with open("..\\opt\\style.json", 'r', encoding="utf-8") as f:
             self.style_name = json.load(f)["selected_style"]
 
         self.style = self.style_dict[self.style_name]

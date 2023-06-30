@@ -118,7 +118,7 @@ class WMap(Map):
         self.root.show_cmap(chap, event)
 
     def build_map(self):
-        with open(self.info, "r") as f:
+        with open(self.info, "r", encoding="utf-8") as f:
             dic = json.load(f)
 
         for ch in dic:
@@ -179,10 +179,10 @@ class CMap(Map):
 
 
     def build_map(self):
-        with open(self.info, "r") as f:
+        with open(self.info, "r", encoding="utf-8") as f:
             dic = json.load(f)
 
-        with open("..\\data\\prog.json", "r") as f:
+        with open("..\\data\\prog.json", "r", encoding="utf-8") as f:
             prog = json.load(f)
 
         for ex in dic:

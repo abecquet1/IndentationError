@@ -7,20 +7,20 @@
             },
             "ex2": {
                 "locked": false,
-                "done": false
+                "done": true
             },
             "ex3": {
                 "locked": false,
-                "done": false
+                "done": true
             }
         },
         "p2": {
             "ex1": {
                 "locked": false,
-                "done": false
+                "done": true
             },
             "ex2": {
-                "locked": true,
+                "locked": false,
                 "done": false
             },
             "ex3": {
