@@ -1,23 +1,115 @@
 {
-    "p1":{
-        "nom" : "Variables",
-        "description" : "Apprenez à manipulez les variables Python",
-        "nb_ex" : 3, 
-        "nb_pages" : 0,
+    "p1": {
+        "nom": "Variables",
+        "description": "Apprenez \u00e0 manipulez les variables Python",
+        "locked": false,
         "x": 300,
         "y": 300,
-        "r":20,
-        "link": ["p2"]
-
+        "r": 20,
+        "link": [
+            "p2"
+        ],
+        "cmap": {
+            "ex1": {
+                "nom": "",
+                "description": "calculs",
+                "locked": false,
+                "x": 300,
+                "y": 300,
+                "r": 20,
+                "link": [
+                    "ex2",
+                    "ex3"
+                ]
+            },
+            "ex2": {
+                "nom": "",
+                "description": "affectations",
+                "locked": true,
+                "x": 400,
+                "y": 200,
+                "r": 20,
+                "link": []
+            },
+            "ex3": {
+                "description": "\u00e9changer deux variables",
+                "locked": true,
+                "x": 400,
+                "y": 400,
+                "r": 20,
+                "link": []
+            }
+        }
     },
-
-    "p2":{
-        "nom" : "Répétez des suites d'instructions avec les boucles for",
-        "nb_ex" : 3,
-        "nb_pages" : 0,
+    "p2": {
+        "nom": "R\u00e9p\u00e9tez des suites d'instructions avec les boucles for",
+        "locked": false,
         "x": 400,
         "y": 300,
-        "r":20,
-        "link": []
+        "r": 20,
+        "link": [],
+        "cmap": {
+            "ex1": {
+                "nom": "",
+                "description": "afficher beaucoup de choses",
+                "locked": false,
+                "x": 300,
+                "y": 300,
+                "r": 20,
+                "link": [
+                    "ex2"
+                ]
+            },
+            "ex2": {
+                "nom": "",
+                "description": "compter",
+                "locked": true,
+                "x": 400,
+                "y": 300,
+                "r": 20,
+                "link": [
+                    "ex3"
+                ]
+            },
+            "ex3": {
+                "nom": "",
+                "description": "sommer",
+                "locked": true,
+                "x": 500,
+                "y": 300,
+                "r": 20,
+                "link": []
+            }
+        }
+    },
+    "p3": {
+        "nom": "",
+        "description": "",
+        "locked": "",
+        "x": 300,
+        "y": 300,
+        "r": 20,
+        "link": [],
+        "cmap": {
+            "ex1": {
+                "nom": "",
+                "description": "",
+                "locked": "",
+                "x": 300,
+                "y": 300,
+                "r": 20,
+                "link": []
+            }
+        }
+    },
+    "p4": {
+        "nom": "",
+        "description": "",
+        "locked": "",
+        "x": 300,
+        "y": 300,
+        "r": 20,
+        "link": [],
+        "cmap": {}
     }
 }
