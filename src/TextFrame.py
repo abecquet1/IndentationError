@@ -401,22 +401,19 @@ class CodeFrame(TextFrame):
             if self.ideux.nom != "Bac":
 
                 # DONE
-                with open("..\\data\\prog.json", 'r', encoding = 'utf-8') as file:
+                with open("..\\local\\prog.json", 'r', encoding = 'utf-8') as file:
                     prog = json.load(file)
 
-                with open(f"..\\data\\{self.ideux.chap}\\cmap.json", 'r', encoding = 'utf-8') as file:
-                    cmap = json.load(file)
+                with open(f"..\\data\\wmap.json", 'r', encoding = 'utf-8') as file:
+                    cmap = json.load(file)[self.ideux.chap]["cmap"]
                     
                 prog["niv"][self.ideux.chap][self.ideux.nom]["done"] = True
                 for n in cmap[self.ideux.nom]["link"]:
                     prog["niv"][self.ideux.chap][n]["locked"] = False
 
-                with open("..\\data\\prog.json", 'w', encoding = 'utf-8') as file:
-                    json.dump(info, file, indent = 4)
-
-                # UNLOCK LINKED
-                with open("..\\data\\prog.json", 'w', encoding = 'utf-8') as file:
+                with open("..\\local\\prog.json", 'w', encoding = 'utf-8') as file:
                     json.dump(prog, file, indent = 4)
+
         
 
         

@@ -1,8 +1,16 @@
 # Modules python
+
 from tkinter import *
 from tkinter import ttk
 import json
 from math import sqrt
+hello = open
+from os import *
+from io import open
+
+from os.path import join, isdir
+import shutil
+
 
 # Modules projet
 from Fenetre import *
@@ -26,7 +34,42 @@ class Option(Fenetre_Nav):
         self.hide(event)
         self.root.set_style()
         self.show()
-    
+
+    def erase_save(self):
+        for ch in listdir(join("..", "local")):
+            if isdir(join("..", "local", ch)):
+                for ex in listdir(join("..", "local", ch)):
+                
+          
+                    f = open(f"..\\local\\{ch}\\{ex}", 'w', encoding="utf-8") 
+                    f.close()
+        
+        f = open(join("..", "local", "bac", "save.py"), 'w', encoding="utf-8")
+        f.close()
+
+        f =  open(join("..", "local", "bac", "test.txt"), 'w', encoding="utf-8") 
+        f.close()
+
+        f =  open(join("..", "local", "prog.json"), 'r', encoding="utf-8") 
+        prog = json.load(f)
+        f.close()
+
+        f =  open(join("..", "data", "wmap.json"), 'r', encoding="utf-8") 
+        wmap = json.load(f)
+        f.close()
+
+        for ch in wmap:
+            for ex in wmap[ch]["cmap"]:
+                assert ex in prog["niv"][ch], "oups"
+                prog["niv"][ch][ex]["locked"] = wmap[ch]["cmap"][ex]["locked"]
+                prog["niv"][ch][ex]["done"] = False
+
+        f =  open("..\\local\\prog.json", 'w', encoding="utf-8")
+        json.dump(prog, f, indent=4)
+        f.close()
+
+            
+        
 
 
     def show(self):
@@ -79,6 +122,9 @@ class Option(Fenetre_Nav):
 
         self.combo.current(index)
         self.combo.bind("<<ComboboxSelected>>", self.apply_themechange)
+        pr.bind('<Leave>', lambda e: pr.config(style = 'clickable.TLabel'))
+        pr.bind('<Enter>', lambda e: pr.config(style = 'hovered.TLabel'))
+        pr.bind('<1>', lambda e : self.erase_save())
 
     
 

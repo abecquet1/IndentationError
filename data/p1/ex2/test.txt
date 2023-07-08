@@ -3,3 +3,9 @@ DATA :
 "Toto" ; 12 -> "BonjourToto!Tuas12ans.\n"
 "Antoine" ; 33 -> "BonjourAntoine!Tuas33ans.\n"
 "Miaou" ; 3  -> "BonjourMiaou!Tuas3ans.\n"
+hello
+
+
+
+
+

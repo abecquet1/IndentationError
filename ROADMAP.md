@@ -41,7 +41,8 @@
 - [x] code input / output
 
 ## Niveaux
-- [ ] Gérer correctement l'arborescence des fichiers
+- [x] Gérer correctement l'arborescence des fichiers
+- [x] Tester correctement l'arborescence des fichiers
 - [ ] Écrire quelques niveaux
 
 

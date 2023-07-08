@@ -113,7 +113,7 @@ class WMap(Map):
 
     def to_map(self, chap, event):
         """Permet de lancer chapitre"""
-        self.root.cmap = CMap(self.root, f"..\\data\\{chap}\\cmap.json",chap)
+        self.root.cmap = CMap(self.root, f"..\\data\\wmap.json", chap)
         self.hide(event)
         self.root.show_cmap(chap, event)
 
@@ -160,7 +160,7 @@ class CMap(Map):
         """Ouvre un niveau du chapitre"""
         self.root.niv = Niveau(self.root, 
                                ex, 
-                               f"..\\data\\{self.chap}\\{ex}\\save.py", 
+                               f"..\\local\\{self.chap}\\{ex}.py", 
                                f"..\\data\\{self.chap}\\{ex}\\enonce.txt", 
                                f"..\\data\\{self.chap}\\{ex}\\test.txt",
                                self.chap)
@@ -180,12 +180,12 @@ class CMap(Map):
 
     def build_map(self):
         with open(self.info, "r", encoding="utf-8") as f:
-            dic = json.load(f)
+            dic = json.load(f)[self.chap]["cmap"]
 
-        with open("..\\data\\prog.json", "r", encoding="utf-8") as f:
+        with open("..\\local\\prog.json", "r", encoding="utf-8") as f:
             prog = json.load(f)
 
-        for ex in dic:
+        for ex in prog['niv'][self.chap]:
             c = self.root.style["node_unlocked"]
             if prog["niv"][self.chap][ex]["done"]:
                 c = self.root.style["node_done"]

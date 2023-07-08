@@ -7,6 +7,7 @@ from json import load
 from Fenetre import *
 from Map import * 
 from Option import *
+from io import open
 
 
 ### APP ###
@@ -26,8 +27,8 @@ class App(Tk):
         self.menu = Menu(self)
         self.bac = Bac(self,
                        "Bac", 
-                       f"..\\data\\bac\\save.py", 
-                       f"..\\data\\bac\\test.txt")
+                       f"..\\local\\bac\\save.py", 
+                       f"..\\local\\bac\\test.txt")
         self.wmap = WMap(self, f"..\\data\\wmap.json")
         self.map = None
         self.niv = None

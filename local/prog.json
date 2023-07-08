@@ -3,27 +3,23 @@
         "p1": {
             "ex1": {
                 "locked": false,
-                "done": true
+                "done": false
             },
             "ex2": {
-                "locked": false,
-                "done": true
+                "locked": true,
+                "done": false
             },
             "ex3": {
-                "locked": false,
-                "done": true
+                "locked": true,
+                "done": false
             }
         },
         "p2": {
             "ex1": {
                 "locked": false,
-                "done": true
-            },
-            "ex2": {
-                "locked": false,
                 "done": false
             },
-            "ex3": {
+            "ex2": {
                 "locked": true,
                 "done": false
             }

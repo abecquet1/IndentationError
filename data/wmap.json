@@ -11,7 +11,7 @@
         ],
         "cmap": {
             "ex1": {
-                "nom": "",
+                "nom": "ex1",
                 "description": "calculs",
                 "locked": false,
                 "x": 300,
@@ -23,15 +23,16 @@
                 ]
             },
             "ex2": {
-                "nom": "",
-                "description": "affectations",
+                "nom": "ex2",
+                "description": "Nul",
                 "locked": true,
                 "x": 400,
                 "y": 200,
-                "r": 20,
+                "r": 30,
                 "link": []
             },
             "ex3": {
+                "nom": "ex3",
                 "description": "\u00e9changer deux variables",
                 "locked": true,
                 "x": 400,
@@ -42,8 +43,9 @@
         }
     },
     "p2": {
-        "nom": "R\u00e9p\u00e9tez des suites d'instructions avec les boucles for",
+        "nom": "p2",
         "locked": false,
+        "description": "",
         "x": 400,
         "y": 300,
         "r": 20,
@@ -67,49 +69,8 @@
                 "x": 400,
                 "y": 300,
                 "r": 20,
-                "link": [
-                    "ex3"
-                ]
-            },
-            "ex3": {
-                "nom": "",
-                "description": "sommer",
-                "locked": true,
-                "x": 500,
-                "y": 300,
-                "r": 20,
                 "link": []
             }
         }
-    },
-    "p3": {
-        "nom": "",
-        "description": "",
-        "locked": "",
-        "x": 300,
-        "y": 300,
-        "r": 20,
-        "link": [],
-        "cmap": {
-            "ex1": {
-                "nom": "",
-                "description": "",
-                "locked": "",
-                "x": 300,
-                "y": 300,
-                "r": 20,
-                "link": []
-            }
-        }
-    },
-    "p4": {
-        "nom": "",
-        "description": "",
-        "locked": "",
-        "x": 300,
-        "y": 300,
-        "r": 20,
-        "link": [],
-        "cmap": {}
     }
 }
