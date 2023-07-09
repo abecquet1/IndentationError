@@ -20,7 +20,7 @@
 - [x] menu options
 - [x] rendre les styles paramétrables
 - [x] thème sombre / clair
-- [ ] réinitialisation de la progression 
+- [x] réinitialisation de la progression 
 
 
 ## Console 
@@ -36,20 +36,21 @@
 ## Tests
 - [x] fonction arguments / résultat
 - [x] fonction arguments / output
-- [ ] fonction contexte / contexte
 - [x] code contexte / contexte
 - [x] code input / output
 
 ## Niveaux
 - [x] Gérer correctement l'arborescence des fichiers
 - [x] Tester correctement l'arborescence des fichiers
-- [ ] Écrire quelques niveaux
+
 
 
 
 
 # Version 2+
 
+- [ ] fonction contexte / contexte
+- [ ] fonction contexte / contexte
 - [ ] refonte affichage console avec after
 - [ ] vrai input dans la console
 - [ ] diode niveau terminé
