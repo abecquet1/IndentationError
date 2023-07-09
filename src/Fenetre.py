@@ -105,14 +105,14 @@ class Menu(Fenetre):
         # Bouttons
         b_map = ttk.Label(self.nav, text="> Continuer", style = 'clickable.TLabel')
         b_bac = ttk.Label(self.nav, text="> Bac à sable", style = 'clickable.TLabel')
-        b_man = ttk.Label(self.nav, text="> Manuel", style = 'clickable.TLabel')
-        b_pgr = ttk.Label(self.nav, text="> Progression", style = 'clickable.TLabel')
+        #b_man = ttk.Label(self.nav, text="> Manuel", style = 'clickable.TLabel')
+        #b_pgr = ttk.Label(self.nav, text="> Progression", style = 'clickable.TLabel')
         b_opt = ttk.Label(self.nav, text="> Options", style = 'clickable.TLabel')
         
         b_map.grid(column=1, row=2, sticky = W)
         b_bac.grid(column=1, row=3, sticky = W)
-        b_man.grid(column=1, row=4, sticky = W)
-        b_pgr.grid(column=1, row=5, sticky = W)
+        #b_man.grid(column=1, row=4, sticky = W)
+        #b_pgr.grid(column=1, row=5, sticky = W)
         b_opt.grid(column=1, row=6, sticky = W)
         
         for child in self.nav.winfo_children(): 
@@ -127,7 +127,7 @@ class Menu(Fenetre):
         self.main.columnconfigure(1, weight = 1)
 
         # Titre
-        ttk.Label(self.main, text="INDENTATION\nERROR [0.9]", style = "titre.TLabel").grid(column = 1, row = 1)
+        ttk.Label(self.main, text="INDENTATION\nERROR [1.0]", style = "titre.TLabel").grid(column = 1, row = 1)
 
 
         # Bindings 
@@ -139,11 +139,11 @@ class Menu(Fenetre):
         b_bac.bind('<Enter>', lambda e: b_bac.config(style = 'hovered.TLabel'))
         b_bac.bind('<1>', self.to_bac)
         
-        b_man.bind('<Leave>', lambda e: b_man.config(style = 'clickable.TLabel'))
-        b_man.bind('<Enter>', lambda e: b_man.config(style = 'hovered.TLabel'))
+        #b_man.bind('<Leave>', lambda e: b_man.config(style = 'clickable.TLabel'))
+        #b_man.bind('<Enter>', lambda e: b_man.config(style = 'hovered.TLabel'))
 
-        b_pgr.bind('<Leave>', lambda e: b_pgr.config(style = 'clickable.TLabel'))
-        b_pgr.bind('<Enter>', lambda e: b_pgr.config(style = 'hovered.TLabel'))
+        #b_pgr.bind('<Leave>', lambda e: b_pgr.config(style = 'clickable.TLabel'))
+        #b_pgr.bind('<Enter>', lambda e: b_pgr.config(style = 'hovered.TLabel'))
 
         b_opt.bind('<Leave>', lambda e: b_opt.config(style = 'clickable.TLabel'))
         b_opt.bind('<Enter>', lambda e: b_opt.config(style = 'hovered.TLabel'))

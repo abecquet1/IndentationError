@@ -1,7 +1,1 @@
 Ecrire une fonction prod(a, b) renvoyant le produit des entiers a et b.
-
-
-
-
-
-cfkdjhskfjdhskjhfkdj
